@@ -14,7 +14,7 @@ const About = () => {
         </div>
         <div className="col-md-4">
           <p className="text-justify mt-2">
-            AgroAsha developed by project X
+            AgroAsha is developed by Project X
           </p>
         </div>
       </div>
