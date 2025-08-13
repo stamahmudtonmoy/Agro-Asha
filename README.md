@@ -17,11 +17,11 @@ Agriculture is the backbone of many economies and technology can enhance the way
 * Bridging the gap between farmers and consumers to ensure fair trade.
   
 ## Features
-* 🌾 Farmer Registration and Product Listing: Farmers can register, create profiles and list their products.
-* 🛒 Consumer-Friendly Shopping: Customers can browse, add items to the cart and make purchases seamlessly.
-* 📈 Order Tracking: Integrated tracking for order management and delivery.
-* 🗂 Category-Based Browsing: Products are categorized for easier navigation.
-* 🔐 Secure Transactions: End-to-end encryption for secure payments.
+* Farmer Registration and Product Listing: Farmers can register, create profiles and list their products.
+* Consumer-Friendly Shopping: Customers can browse, add items to the cart and make purchases seamlessly.
+* Order Tracking: Integrated tracking for order management and delivery.
+* Category-Based Browsing: Products are categorized for easier navigation.
+* Secure Transactions: End-to-end encryption for secure payments.
 
 ## Technologies Used
 * Frontend: React.js, HTML5, CSS3, Bootstrap.
