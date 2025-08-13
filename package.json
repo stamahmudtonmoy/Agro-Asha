@@ -8,7 +8,11 @@
     "start": "node server.js",
     "server": "nodemon server.js",
     "client":"npm start --prefix ./client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "docs": "npx jsdoc -c jsdoc.json",
+    "test": "npx jest",
+    "test:watch": "npx jest --watch",
+    "test:coverage": "npx jest --coverage"
   },
   "keywords": [],
   "author": "Project X",
