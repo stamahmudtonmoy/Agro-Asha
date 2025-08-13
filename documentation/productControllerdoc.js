@@ -1,9 +1,24 @@
+/**
+ * Product Controller Module
+ * Handles CRUD operations, filtering, searching, and related product functionalities.
+ * Uses productModel and categoryModel to interact with MongoDB.
+ */
 
 import productModel from "../models/productModel.js";
 import categoryModel from "../models/categoryModel.js";
 import fs from "fs";
 import slugify from "slugify";
 
+/**
+ * Create a new product.
+ * @async
+ * @function createProductController
+ * @param {Object} req - Express request object containing product fields and files.
+ * @param {Object} req.fields - Product fields (name, description, price, category, quantity, shipping).
+ * @param {Object} req.files - Product files (e.g., photo).
+ * @param {Object} res - Express response object.
+ * @returns {JSON} Newly created product or error message.
+ */
 export const createProductController = async (req, res) => {
   try {
     const { name, description, price, category, quantity, shipping } =
@@ -48,6 +63,14 @@ export const createProductController = async (req, res) => {
   }
 };
 
+/**
+ * Get all products with optional limit.
+ * @async
+ * @function getProductController
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @returns {JSON} List of products.
+ */
 export const getProductController = async (req, res) => {
   try {
     const products = await productModel
@@ -73,6 +96,14 @@ export const getProductController = async (req, res) => {
   }
 };
 
+/**
+ * Get single product by slug.
+ * @async
+ * @function getSingleProductController
+ * @param {Object} req - Express request object containing product slug in params.
+ * @param {Object} res - Express response object.
+ * @returns {JSON} Product details or error message.
+ */
 export const getSingleProductController = async (req, res) => {
   try {
     const product = await productModel
@@ -94,6 +125,14 @@ export const getSingleProductController = async (req, res) => {
   }
 };
 
+/**
+ * Get product photo by ID.
+ * @async
+ * @function productPhotoController
+ * @param {Object} req - Express request object containing product ID in params.
+ * @param {Object} res - Express response object, sends image data.
+ * @returns {Buffer} Binary image data.
+ */
 export const productPhotoController = async (req, res) => {
   try {
     const product = await productModel.findById(req.params.pid).select("photo");
@@ -111,6 +150,14 @@ export const productPhotoController = async (req, res) => {
   }
 };
 
+/**
+ * Delete product by ID.
+ * @async
+ * @function deleteProductController
+ * @param {Object} req - Express request object containing product ID in params.
+ * @param {Object} res - Express response object.
+ * @returns {JSON} Deletion success message.
+ */
 export const deleteProductController = async (req, res) => {
   try {
     await productModel.findByIdAndDelete(req.params.pid).select("-photo");
@@ -128,6 +175,14 @@ export const deleteProductController = async (req, res) => {
   }
 };
 
+/**
+ * Update product by ID.
+ * @async
+ * @function updateProductController
+ * @param {Object} req - Express request object containing updated fields/files.
+ * @param {Object} res - Express response object.
+ * @returns {JSON} Updated product details.
+ */
 export const updateProductController = async (req, res) => {
   try {
     const { name, description, price, category, quantity, shipping } =
@@ -178,6 +233,14 @@ export const updateProductController = async (req, res) => {
   }
 };
 
+/**
+ * Filter products based on category and price.
+ * @async
+ * @function productFiltersController
+ * @param {Object} req - Express request object containing filters in body.
+ * @param {Object} res - Express response object.
+ * @returns {JSON} Filtered products list.
+ */
 export const productFiltersController = async (req, res) => {
   try {
     const { checked, radio } = req.body;
@@ -199,6 +262,14 @@ export const productFiltersController = async (req, res) => {
   }
 };
 
+/**
+ * Search products by keyword.
+ * @async
+ * @function searchProductController
+ * @param {Object} req - Express request object containing keyword in params.
+ * @param {Object} res - Express response object.
+ * @returns {JSON} Products matching the search keyword.
+ */
 export const searchProductController = async (req, res) => {
   try {
     const { keyword } = req.params;
@@ -221,6 +292,14 @@ export const searchProductController = async (req, res) => {
   }
 };
 
+/**
+ * Get related products based on category, excluding current product.
+ * @async
+ * @function relatedProductController
+ * @param {Object} req - Express request object containing product ID and category ID in params.
+ * @param {Object} res - Express response object.
+ * @returns {JSON} Related products list.
+ */
 export const relatedProductController = async (req, res) => {
   try {
     const { pid, cid } = req.params;
@@ -246,6 +325,14 @@ export const relatedProductController = async (req, res) => {
   }
 };
 
+/**
+ * Get products by category slug.
+ * @async
+ * @function productCategoryController
+ * @param {Object} req - Express request object containing category slug in params.
+ * @param {Object} res - Express response object.
+ * @returns {JSON} Category and its products.
+ */
 export const productCategoryController = async (req, res) => {
   try {
     const category = await categoryModel.findOne({ slug: req.params.slug });
